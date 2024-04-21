@@ -1,0 +1,3 @@
+Any compiler/interpreter/parser does parsing in 2 steps
+- Lexical analysis or Tokenizing
+- Syntactic analysis or the actual parsing
