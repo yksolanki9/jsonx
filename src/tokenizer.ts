@@ -50,10 +50,12 @@ export const tokenize = (input: string) => {
       continue;
     }
 
+    //If type is still null, throw an error
     if (type === null) {
       throw new Error("Unexpected value: " + char);
     }
 
+    //Push token to tokens array. If value is empty, push the character, else push the value(string)
     tokens.push({ type, value: value === "" ? char : value });
     curIndex++;
   }

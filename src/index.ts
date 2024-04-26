@@ -1,5 +1,6 @@
 #! /usr/bin/env node
 
+import { parser } from "./parser";
 import { tokenize } from "./tokenizer";
 
 const tokens = tokenize(`{
@@ -10,4 +11,6 @@ const tokens = tokenize(`{
   "nullValue": null
 }`);
 
-console.log(tokens);
+const parsedValue = parser(tokens);
+
+console.log(parsedValue);
