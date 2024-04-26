@@ -4,11 +4,12 @@ import { parser } from "./parser";
 import { tokenize } from "./tokenizer";
 
 const tokens = tokenize(`{
-  "id": "647ceaf3657eade56f8224eb",
-  "index": 0,
-  "something": [],
-  "boolean": true,
-  "nullValue": null
+  "key": "value",
+  "key-n": 101,
+  "key-o": {
+    "inner key": "inner value"
+  },
+  "key-l": ["list value"]
 }`);
 
 const parsedValue = parser(tokens);

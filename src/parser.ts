@@ -11,6 +11,9 @@ export const parser = (tokens: Token[]): ASTNode => {
     //Skip BRACE_OPEN
     ++index;
 
+    //Variable to check if comma is present for the last key-value pair in json
+    let commaSkipped = false;
+
     while (tokens[index].type !== TokenType.BRACE_CLOSE) {
       //Object key can only be a string. Throw error if it's anything else.
       if (tokens[index].type === TokenType.STRING) {
@@ -40,7 +43,17 @@ export const parser = (tokens: Token[]): ASTNode => {
       ++index;
 
       //Skip the comma at the end
-      if (tokens[index].type === TokenType.COMMA) ++index;
+      if (tokens[index].type === TokenType.COMMA) {
+        commaSkipped = true;
+        ++index;
+      } else {
+        commaSkipped = false;
+      }
+    }
+
+    //Throw error if comma is present for the last key-value pair
+    if (commaSkipped) {
+      throw new Error("Unexpected comma");
     }
 
     return astNode;
@@ -52,6 +65,9 @@ export const parser = (tokens: Token[]): ASTNode => {
     //Skip BRACKET_OPEN
     ++index;
 
+    //Variable to check if comma is present after last array element
+    let commaSkipped = false;
+
     while (tokens[index].type !== TokenType.BRACKET_CLOSE) {
       astNode.value.push(parseValue());
 
@@ -59,7 +75,17 @@ export const parser = (tokens: Token[]): ASTNode => {
       ++index;
 
       //Skip the comma between array elements
-      if (tokens[index].type === TokenType.COMMA) ++index;
+      if (tokens[index].type === TokenType.COMMA) {
+        commaSkipped = true;
+        ++index;
+      } else {
+        commaSkipped = false;
+      }
+    }
+
+    //Throw error if comma is present after last array element
+    if (commaSkipped) {
+      throw new Error("Unexpected comma");
     }
 
     return astNode;
