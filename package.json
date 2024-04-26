@@ -7,7 +7,7 @@
     "build": "npx tsc"
   },
   "bin": {
-    "jsonx": "./dist/index.js"
+    "jsonp": "./dist/index.js"
   },
   "author": "yashsolanki1709@gmail.com",
   "license": "ISC",

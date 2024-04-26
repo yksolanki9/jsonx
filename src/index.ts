@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#! /usr/bin/env node
 
 import { tokenize } from "./tokenizer";
 
@@ -10,5 +10,4 @@ const tokens = tokenize(`{
   "nullValue": null
 }`);
 
-//TODO: fix the error when running the js file
 console.log(tokens);
